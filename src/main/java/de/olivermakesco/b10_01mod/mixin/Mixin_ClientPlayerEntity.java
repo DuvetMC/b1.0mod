@@ -26,7 +26,7 @@ public class Mixin_ClientPlayerEntity {
 		var skin = MojangLookup.getSkinFromUid(uid);
 		if (skin == null) return;
 		var self = ((ClientPlayerEntity)(Object)this);
-		self.skin = MojangLookup.getCroppedSkinUrl(skin);
+		self.skin = skin;
 		System.out.println("Patching skin - new: " + self.skin);
 	}
 }

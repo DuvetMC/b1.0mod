@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Base64;
+import java.util.Objects;
 
 public class MojangLookup {
 	public static String MOJANG_API_BASE = "https://api.mojang.com/";
@@ -49,8 +50,15 @@ public class MojangLookup {
 			var json = gson.fromJson(response, JsonObject.class);
 			if (json.has("errorMessage")) return null;
 			var b64Encode = json.get("properties").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString();
-			var skinData = gson.fromJson(new String(Base64.getDecoder().decode(b64Encode)), JsonObject.class);
-			return skinData.getAsJsonObject().get("textures").getAsJsonObject().get("SKIN").getAsJsonObject().get("url").getAsString();
+			var skinData = gson.fromJson(new String(Base64.getDecoder().decode(b64Encode)), JsonObject.class).getAsJsonObject().get("textures").getAsJsonObject().get("SKIN").getAsJsonObject();
+			var slim = false;
+			if (skinData.has("metadata")) {
+				var meta = skinData.get("metadata").getAsJsonObject();
+				if (meta.has("model")) {
+					slim = Objects.equals(meta.get("model").getAsString(), "slim");
+				}
+			}
+			return getCroppedSkinUrl(skinData.get("url").getAsString()) + (slim ? "?slim" : "");
 		} catch (IOException e) {
 			return null;
 		}
