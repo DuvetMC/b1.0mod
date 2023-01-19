@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(MinecraftClient.class)
 public class Mixin_MinecraftClient {
-	@Unique private boolean isMouseButtonSwapped = System.getProperty("mc.mouseswap").equalsIgnoreCase("true");
+	@Unique private boolean isMouseButtonSwapped = System.getProperty("mc.mouseswap").toLowerCase() == "true";
 
 	@Redirect(
 			method = "i",
