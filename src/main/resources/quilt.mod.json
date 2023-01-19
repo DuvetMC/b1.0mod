@@ -1,11 +1,11 @@
 {
 	"schema_version": 1,
 	"quilt_loader": {
-		"group": "com.example",
-		"id": "example_mod",
+		"group": "de.olivermakesco",
+		"id": "b10_01mod",
 		"version": "${version}",
 		"metadata": {
-			"name": "Mod Name",
+			"name": "Beta 1.0_01 Test Mod",
 			"description": "A short description of your mod.",
 			"contributors": {
 				"Your name here": "Owner"
@@ -19,22 +19,13 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "com.example.example_mod.ExampleMod"
 		},
 		"depends": [
 			{
 				"id": "quilt_loader",
 				"versions": ">=0.17.6-"
-			},
-			{
-				"id": "quilted_fabric_api",
-				"versions": ">=5.0.0-"
-			},
-			{
-				"id": "minecraft",
-				"versions": ">=1.19.3"
 			}
 		]
 	},
-	"mixin": "example_mod.mixins.json"
+	"mixin": "b1.0_01mod.mixins.json"
 }

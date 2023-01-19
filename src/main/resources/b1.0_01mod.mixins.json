@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.olivermakesco.b10_01mod.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "Mixin_ClientPlayerEntity",
+    "Mixin_PlayablePlayerEntity",
+    "Mixin_MinecraftApplet",
+    "Mixin_MinecraftClient"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
