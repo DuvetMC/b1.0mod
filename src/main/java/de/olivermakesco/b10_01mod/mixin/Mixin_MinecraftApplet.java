@@ -16,7 +16,8 @@ public class Mixin_MinecraftApplet {
 			at = @At(
 					value = "INVOKE",
 					target = "Lnet/minecraft/client/MinecraftApplet;getParameter(Ljava/lang/String;)Ljava/lang/String;"
-			)
+			),
+			remap = false
 	)
 	private String setUsername(MinecraftApplet instance, String s) {
 		var username = System.getProperty("mc.username");

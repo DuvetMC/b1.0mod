@@ -5,9 +5,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "Mixin_ClientPlayerEntity",
-    "Mixin_PlayablePlayerEntity",
+    "Mixin_Minecraft",
     "Mixin_MinecraftApplet",
-    "Mixin_MinecraftClient"
+    "Mixin_ServerPlayerEntity"
   ],
   "injectors": {
     "defaultRequire": 1
