@@ -1,7 +1,7 @@
 package de.olivermakesco.b10_01mod.mixin;
 
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.MinecraftClient;
 import org.lwjgl.input.Mouse;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -9,22 +9,24 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(Minecraft.class)
-public class Mixin_Minecraft {
+@Mixin(MinecraftClient.class)
+public class Mixin_MinecraftClient {
 	@Unique
 	private boolean isMouseButtonSwapped = getMouseSwapArg();
 
 	@Unique
 	private boolean getMouseSwapArg() {
-		var arg = System.getProperty("mc.mouseswap");
+		String arg = System.getProperty("mc.mouseswap");
 		if (arg == null) return false;
 		return arg.equalsIgnoreCase("true");
 	}
 
 	@Redirect(
-			method = "j",
-			at = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Mouse;getEventButton()I"),
-			remap = false
+			method = "tickInput",
+			at = @At(
+					value = "INVOKE",
+					target = "Lorg/lwjgl/input/Mouse;getEventButton()I"
+			)
 	)
 	private int changeValue() {
 		int button = Mouse.getEventButton();
@@ -35,12 +37,11 @@ public class Mixin_Minecraft {
 	}
 
 	@ModifyArg(
-			method = "j",
+			method = "tickInput",
 			at = @At(
 					value = "INVOKE",
 					target = "Lorg/lwjgl/input/Mouse;isButtonDown(I)Z"
-			),
-			remap = false
+			)
 	)
 	private int changeValue(int button) {
 		if (!isMouseButtonSwapped) return button;

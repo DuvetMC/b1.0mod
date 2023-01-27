@@ -4,10 +4,8 @@
   "package": "de.olivermakesco.b10_01mod.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "Mixin_ClientPlayerEntity",
-    "Mixin_Minecraft",
     "Mixin_MinecraftApplet",
-    "Mixin_ServerPlayerEntity"
+    "Mixin_MinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1
