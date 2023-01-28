@@ -25,7 +25,8 @@ public class Mixin_MinecraftClient {
 			method = "tickInput",
 			at = @At(
 					value = "INVOKE",
-					target = "Lorg/lwjgl/input/Mouse;getEventButton()I"
+					target = "Lorg/lwjgl/input/Mouse;getEventButton()I",
+					remap = false
 			)
 	)
 	private int changeValue() {
@@ -40,7 +41,8 @@ public class Mixin_MinecraftClient {
 			method = "tickInput",
 			at = @At(
 					value = "INVOKE",
-					target = "Lorg/lwjgl/input/Mouse;isButtonDown(I)Z"
+					target = "Lorg/lwjgl/input/Mouse;isButtonDown(I)Z",
+					remap = false
 			)
 	)
 	private int changeValue(int button) {
